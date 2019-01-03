@@ -1,0 +1,81 @@
+version: '3.4'
+services:
+        freeradius:
+                build:
+                        context: ./build-freeradius-image
+                        dockerfile: Dockerfile
+                image: freeradius-mysql-with-auto-mac-register
+                container_name: freeradius
+                env_file:
+                        - ./config.env
+                ports:
+                        - "1812:1812/udp"
+                        - "1813:1813/udp"
+                volumes:
+                        - ./freeradius.conf/proxy.conf:/etc/freeradius/3.0/custom-proxy.conf
+                restart: always
+                depends_on:
+                        - mysql
+                networks:
+                        wifiauthinternal:
+                                aliases:
+                                        - freeradius
+                        wifiauthexternal:
+                                aliases:
+                                        - freeradius
+                logging:
+                        driver: "json-file"
+                        options:
+                                max-size: "5m"
+                                max-file: "100"
+        mysql:
+                image: mysql:5.6.42
+                container_name: mysql
+                env_file:
+                        - ./config.env
+                ports:
+                        - "3306:3306"
+                volumes:
+                        - ./mysql-data:/var/lib/mysql
+                        - ./initdb:/docker-entrypoint-initdb.d
+                restart: always
+                networks:
+                        wifiauthinternal:
+                                aliases:
+                                        - mysql
+                logging:
+                        driver: "json-file"
+                        options:
+                            max-size: "5m"
+                            max-file: "100"
+        web:
+                #image: php:7.3.0-apache-stretch
+                build:
+                        context: ./build-php-mysql-ldap-image
+                        dockerfile: Dockerfile
+                image: php-mysql-ldap
+                container_name: web
+                env_file:
+                        - ./config.env
+                ports:
+                        - "80:80"
+                volumes:
+                        - ./www:/var/www/html
+                restart: always
+                depends_on:
+                        - mysql
+                networks:
+                        wifiauthinternal:
+                                aliases:
+                                        - web
+                        wifiauthexternal:
+                                aliases:
+                                        - web
+                logging:
+                        driver: "json-file"
+                        options:
+                                max-size: "5m"
+                                max-file: "100"
+networks:
+        wifiauthexternal:
+        wifiauthinternal:

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="macApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>WIFI MAC Address Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/theme.css" rel="stylesheet" media="screen">
+<script language="javascript" src="js/angular.min.js"></script>
+<script language="javascript" src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+</head>
+
+<body ng-controller="mainController">
+<div id="wrap"> <!-- warp -->
+<div class="container" style="position:relative">
+
+<div class="page-header">
+<h3>WIFI MAC Address Management</h3>
+</div>
+
+<div style="position:relative; min-height:50px;">
+<div style="text-align: left; position: absolute; left: 15px;">
+<!--    <a  ng-class="{'btn  btn-primary':macList.length<=quota , 'btn  btn-danger':macList.length>quota}" ng-click="openMacModal()" ng-disabled="macList.length>quota">
+    	<span ng-show="macList.length<=quota">Register MAC Address</span>
+	</a> -->
+        <span class="btn  btn-danger" ng-show="macList.length>quota">MAC Address Quota Limit Exceeded</span>
+    </div>
+
+    <div  style="text-align:right; position:absolute; right:15px; top:0">
+    Welcome <strong>{{username}}</strong> | <a href="controls/logout.php">Sign Out</a>
+	</div>
+</div>
+
+<!-- MAC Address List -->
+<div class="col-sm-4" ng-repeat='mac in macList' ng-hide='$index==0'>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title" style="font-weight:bold">{{mac.description}}</h3>
+	</div>
+	<div class="panel-body">
+    <strong>{{mac.macaddress}}</strong>
+	<hr />
+	Vendor : {{mac.vendor}}
+	</div>
+    <div class="panel-footer">
+    <strong>Register on : </strong>{{mac.addtime}} <br />
+    <strong>Last log in on </strong> {{mac.updatetime}} <br />
+	<a class="btn btn-danger" ng-click="deleteMac(mac)">Delete</a>
+    </div>
+</div>    
+
+</div><!-- /MAC Address List -->
+
+</div><!-- /containner -->
+
+</div> <!-- /warp -->
+
+<div id="footer">
+	<div class="container">
+    	<div class="muted credit">Computer Network Operation Center. Information Technology Service Center. Chiang Mai University. <a href="mailto:network@cmu.ac.th">network@cmu.ac.th</a></div>
+    </div>
+</div>
+<script language="javascript" src="js/mac.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MAC Registration Form.</title>
+</head>
+
+<body>
+<form class="form-horizontal" role="form" id="registerForm" name="registerForm">
+	<div class="modal-header"><h3>Register MAC Address</h3></div>
+	<div class="modal-body">		
+    			<div class="modal-body">                    
+                    	<div class="form-group">
+                    		<label class="col-sm-3 control-label" for="description">Description</label>
+                            <div class="col-sm-9">
+	                    		<input type="text" class="form-control" id="description" name="description"  required="required" ng-model="mac.description">
+                           	</div>
+                    	</div>
+                        <div class="form-group">
+                    		<label class="col-sm-3 control-label" for="address">MAC Address</label>
+                            <div class="col-sm-9">
+	                    		<input type="text" class="form-control" id="address" name="address"   required="required" ng-model="mac.address" ng-pattern="/^([0-9A-Fa-f]{2}[-]){5}([0-9A-Fa-f]{2})$/">
+                           	</div>
+                    	</div>
+                        <div class="alert alert-danger" ng-show="registerForm.address.$error.pattern">MAC Address be in the form <strong>AA-AA-AA-AA-AA-AA</strong>, where <strong>AA</strong> is 0-9 or a-f.</div>
+    			</div>    			
+                
+	</div>
+	<div class="modal-footer">
+		<button class="btn btn-default" ng-click="macModalCancel()">Cancel</button>
+		<button class="btn btn-primary" ng-disabled="registerForm.$invalid || registerForm.address.$invalid" ng-click="macModalOK()">Register</button>
+    </div>
+</form>
+</body>
+</html>

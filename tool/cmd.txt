@@ -1,0 +1,1 @@
+./rad_eap_test -H 10.110.0.47 -P 1812 -S cnoc1234 -u user1@cnoc.cmu -p P@ssw0rd@1 -m IEEE8021X -e PEAP -2 MSCHAPV2 -M 00:00:00:00:00:03

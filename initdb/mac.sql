@@ -1,0 +1,14 @@
+﻿CREATE TABLE IF NOT EXISTS `mac` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`username` VARCHAR(100) NOT NULL,
+	`macaddress` VARCHAR(17) NOT NULL,
+	`description` VARCHAR(255) NOT NULL,
+	`vendor` VARCHAR(255) NULL DEFAULT NULL,
+	`addtime` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`updatetime` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `MAC` (`username`, `macaddress`)
+)
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+;

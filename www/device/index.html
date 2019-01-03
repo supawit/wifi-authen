@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="macApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>WIFI MAC Address Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="css/theme.css" rel="stylesheet" media="screen">
+<script language="javascript" src="js/angular.min.js"></script>
+<script language="javascript" src="js/ui-bootstrap-tpls-0.10.0.min.js"></script>
+</head>
+
+<body ng-controller="signinController">
+<div id="wrap"> <!-- warp -->
+<div class="container">
+<div class="page-header">
+<h3>WIFI MAC Address Management</h3>
+</div>
+
+<form class="form-inline" role="form" style="margin:20px 0px;" id="login_form" ng-submit="signin()">
+  <div class="form-group">
+    <label class="sr-only" for="email">Email address</label>
+    <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="user.email">
+  </div>
+  <div class="form-group">
+    <label class="sr-only" for="passwd">Password</label>
+    <input type="password" class="form-control" id="passwd" placeholder="Password" ng-model="user.passwd">
+  </div>  
+  <button type="submit" class="btn btn-primary" id="login" >Sign in</button>
+  <span id="login_status" ng-class="style">{{signin_status}}</span>
+</form>
+</div>
+
+</div> <!-- /warp -->
+
+<div id="footer">
+	<div class="container">
+    	<div class="muted credit">Computer Network Operation Center. Information Technology Service Center. Chiang Mai University. <a href="mailto:network@cmu.ac.th">network@cmu.ac.th</a></div>
+    </div>
+</div>
+<script language="javascript" src="js/mac.js"></script>
+</body>
+</html>
