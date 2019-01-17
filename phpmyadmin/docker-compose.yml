@@ -1,0 +1,21 @@
+version: '3.4'
+services:
+        phpmyadmin:
+                image: phpmyadmin/phpmyadmin
+                container_name: phpmyadmin
+                environment:
+                        PMA_HOST: mysql
+                ports:
+                        - "81:80"
+                networks:
+                        wifi-authen_wifiauthinternal:
+                                aliases:
+                                        - phpmyadmin
+                logging:
+                        driver: "json-file"
+                        options:
+                            max-size: "5m"
+                            max-file: "100"
+networks:
+        wifi-authen_wifiauthinternal:
+                external: true
