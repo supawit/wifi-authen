@@ -12,7 +12,4 @@ COPY --chown=freerad:freerad freeradius/3.0/mods-available/sql /etc/freeradius/3
 RUN cd /etc/freeradius/3.0/mods-enabled/ && ln -sf ../mods-available/sql sql
 EXPOSE 1812/udp
 EXPOSE 1813/udp
-# debug mode
-#CMD ["freeradius","-X"]
-# normal mode
 CMD ["freeradius","-f"]

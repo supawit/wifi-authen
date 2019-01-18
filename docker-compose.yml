@@ -1,11 +1,10 @@
 version: '3.4'
 services:
         freeradius:
-                build:
-                        context: ./build-freeradius-image
-                        dockerfile: Dockerfile
-                image: freeradius-mysql-with-auto-mac-register
+                image: supawit/cmu-freeradius:190118
                 container_name: freeradius
+                #override default command
+                #command: ["freeradius","-X"]
                 env_file:
                         - ./config.env
                 ports:
@@ -33,8 +32,6 @@ services:
                 container_name: mysql
                 env_file:
                         - ./config.env
-                #ports:
-                       #- "3306:3306"
                 volumes:
                         - ./mysql-data:/var/lib/mysql
                         - ./initdb:/docker-entrypoint-initdb.d
@@ -49,11 +46,7 @@ services:
                             max-size: "5m"
                             max-file: "100"
         web:
-                #image: php:7.3.0-apache-stretch
-                build:
-                        context: ./build-php-mysql-ldap-image
-                        dockerfile: Dockerfile
-                image: php-mysql-ldap
+                image: supawit/php-mysql-ldap:190118
                 container_name: web
                 env_file:
                         - ./config.env
