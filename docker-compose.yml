@@ -2,6 +2,7 @@ version: '3.4'
 services:
         freeradius:
                 image: supawit/cmu-freeradius:190118
+                #image: supawit/cmu-freeradius:190191-from-src
                 container_name: freeradius
                 #override default command
                 #command: ["freeradius","-X"]
